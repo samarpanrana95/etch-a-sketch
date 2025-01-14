@@ -2,6 +2,7 @@ let grid = [];
 let currentColor = 'black';
 let isClicked = false;
 let isEraser = false;
+let isRainbow = false;
 
 // to initally set up the grid
 updateGrid(144);
@@ -14,8 +15,18 @@ containerButtons.addEventListener("click", (e) => {
         return;
     }
     switch (className) {
+        case 'button-color-mode':
+            isEraser = false;
+            isRainbow = false;
+            currentColor = colorPickerInput.value;
+            break;
+        case 'button-rainbow-mode':
+            isRainbow = true;
+            isEraser = false;
+            break;
         case 'button-eraser':
             isEraser = true;
+            isRainbow = false
             currentColor = '#fff';
             break;
         case 'button-clear':
@@ -26,7 +37,14 @@ containerButtons.addEventListener("click", (e) => {
     }
 })
 
-
+let colorPickerInput = document.querySelector('#color-picker-input');
+colorPickerInput.addEventListener("input", (e) => {
+    let target = e.target;
+    let colorPickerUi = document.querySelector('.color-picker');
+    colorPickerUi.style.background = target.value;
+    currentColor = target.value;
+    isColorChanged = true;
+})
 
 let rangeUi = document.querySelector('.input-meter-ui');
 rangeUi.addEventListener("input", (e) => {
@@ -116,7 +134,7 @@ function changeOpacity (target) {
         return;
     }
     let opacityValue = target.style.opacity;
-    if (opacityValue == 1) {
+    if (opacityValue >= 1) {
         return;
     }
     opacityValue = Number(opacityValue) + 0.1;
@@ -125,6 +143,22 @@ function changeOpacity (target) {
 
 function updateSquareDom (e) {
     let target = e.target;
+    if (isRainbow) {
+        target.style.background = getRandomColor();
+        let value = Math.random();
+        if (value > 0.9) {
+        }
+        else {
+            value += 0.05; 
+        }
+        target.style.opacity = value;
+        return;
+    }
     target.style.background = currentColor;
     changeOpacity(target);
+}
+
+function getRandomColor () {
+    let n = (Math.random() * 0xfffff * 1000000).toString(16);
+    return '#' + n.slice(0, 6);
 }
