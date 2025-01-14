@@ -1,10 +1,32 @@
 let grid = [];
 let currentColor = 'black';
 let isClicked = false;
+let isEraser = false;
 
 // to initally set up the grid
 updateGrid(144);
 updateGridText(12);
+
+let containerButtons = document.querySelector('.container-buttons');
+containerButtons.addEventListener("click", (e) => {
+    let className = e.target.classList[1];
+    if (className == undefined) {
+        return;
+    }
+    switch (className) {
+        case 'button-eraser':
+            isEraser = true;
+            currentColor = '#fff';
+            break;
+        case 'button-clear':
+            let value = rangeUi.value;
+            let totalSquares = value * value;
+            updateGrid(totalSquares);
+            break;
+    }
+})
+
+
 
 let rangeUi = document.querySelector('.input-meter-ui');
 rangeUi.addEventListener("input", (e) => {
@@ -89,6 +111,10 @@ function colorGrid (index) {
 }
 
 function changeOpacity (target) {
+    if (isEraser) {
+        target.style.opacity = 0.1;
+        return;
+    }
     let opacityValue = target.style.opacity;
     if (opacityValue == 1) {
         return;
