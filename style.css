@@ -69,14 +69,14 @@ h1 {
 .container-grid {
     width: 500px;
     height: 500px;
-    border: 1px solid black;
+    outline: 1px solid black;
 
     display: flex;
     flex-wrap: wrap;
 }
 
 .container-grid-items {
-    flex: 1 0 100px;
+    flex: 1 0 0;
     border: 1px solid black;
     cursor: pointer;
 }
@@ -116,4 +116,14 @@ h1 {
 .footer a {
     text-decoration: none;
     color: #fff;
+}
+
+.container-grid-items {
+    -moz-window-dragging: no-drag;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.container-grid {
+    -webkit-user-drag: none;
 }
