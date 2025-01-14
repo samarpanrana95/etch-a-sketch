@@ -7,4 +7,113 @@
 
 body {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 2px 2px 2px black;
+}
+
+.container {
+    margin: 2rem 0;
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+.container-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.color-picker {
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: black;
+    outline: transparent;
+}
+
+#color-picker-input {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.button {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid black;    
+    border-radius: 4px;
+}
+
+.button:hover {
+    background: #000;
+    color: #fff;
+}
+
+.container-grid {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container-grid-items {
+    flex: 1 0 100px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.input-meter-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.input-meter-ui {
+    cursor: pointer;
+    width: 100%;
+    min-width: 200px;
+    margin-top: 0.25rem;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+.input-meter-ui::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+}
+
+.footer {
+    padding: 0.25rem;
+    text-align: center;
+    background: #000;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
 }
